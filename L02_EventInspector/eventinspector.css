@@ -1,0 +1,32 @@
+body {
+  align-items: center;
+}
+
+#container {
+  margin-top: 25px;
+  column-gap: 50px;  
+  display: grid;
+  grid-template-columns: repeat(2, 500px);
+}
+
+#div0 {
+  height: 500px;
+  border: 1px solid black;
+}
+
+#div1 {
+  height: 500px;
+  border: 1px solid black;
+}
+
+button {
+  color: black;
+}
+
+span {
+  display: flex;
+  position: fixed;
+  border: 1px solid black;
+  width: 250px;
+  height: 100px;
+}
