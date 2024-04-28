@@ -32,3 +32,73 @@ form.addEventListener('submit', (event: Event) => {
   console.log("gakauft:", newItem.bought);
 
 });
+
+class ShoppingList {
+  items: ListItem[];
+
+  constructor() {
+    this.items = [];
+  }
+
+  addItem(item: ListItem) {
+    this.items.push(item);
+  }
+
+  toggleBoughtStatus(index: number) {
+    this.items[index].bought = !this.items[index].bought;
+  }
+}
+
+
+const shoppingList = new ShoppingList();
+
+function displayShoppingList() {
+}
+
+function addItemToList(item: ListItem) {
+  shoppingList.addItem(item);
+  displayShoppingList();
+}
+
+form.addEventListener('submit', (event: Event) => {
+  event.preventDefault();
+
+  const newItem: ListItem = {
+    name: nameInput.value,
+    quantity: parseInt(quantityInput.value),
+    date: dateInput.value,
+    comment: commentInput.value,
+    bought: boughtInput.checked,
+  };
+
+  addItemToList(newItem);
+});
+
+displayShoppingList();
+
+interface ListItem {
+  name: string;
+  quantity: number;
+  date: string;
+  comment: string;
+  bought: boolean;
+}
+
+class list {
+  items: ListItem[];
+
+  constructor() {
+    this.items = [];
+  }
+
+  addItem(item: ListItem) {
+    this.items.push(item);
+  }
+
+  toggleBoughtStatus(index: number) {
+    this.items[index].bought = !this.items[index].bought;
+  }
+}
+
+export default ShoppingList;
+
