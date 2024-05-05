@@ -76,29 +76,3 @@ form.addEventListener('submit', (event: Event) => {
 
 displayShoppingList();
 
-interface ListItem {
-  name: string;
-  quantity: number;
-  date: string;
-  comment: string;
-  bought: boolean;
-}
-
-class list {
-  items: ListItem[];
-
-  constructor() {
-    this.items = [];
-  }
-
-  addItem(item: ListItem) {
-    this.items.push(item);
-  }
-
-  toggleBoughtStatus(index: number) {
-    this.items[index].bought = !this.items[index].bought;
-  }
-}
-
-export default ShoppingList;
-
