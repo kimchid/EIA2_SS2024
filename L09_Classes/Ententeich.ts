@@ -29,7 +29,6 @@ class Ente {
         this.position = position;
         this.velocity = velocity;
     }
-    
 
     zeichneEnte(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = '#FFD700';
@@ -74,6 +73,14 @@ class Insekt {
         }
     }
 }
+
+canvas.addEventListener('click', (event) => {
+    const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+    const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+
+    const newInsekt = new Insekt({ x: mouseX, y: mouseY }, { x: 1 + Math.random() * 2, y: 0 });
+    insekten.push(newInsekt);
+});
 
 function animate() {
     himmel();
