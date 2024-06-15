@@ -23,10 +23,13 @@ class Ente {
     position: { x: number, y: number };
     velocity: { x: number, y: number };
 
+    clicked: boolean;
+
     constructor(position: { x: number, y: number }, velocity: { x: number, y: number }) {
         this.position = position;
         this.velocity = velocity;
     }
+    
 
     zeichneEnte(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = '#FFD700';
@@ -48,6 +51,30 @@ class Ente {
     }
 }
 
+class Insekt {
+    position: { x: number, y: number };
+    velocity: { x: number, y: number };
+
+    constructor(position: { x: number, y: number }, velocity: { x: number, y: number }) {
+        this.position = position;
+        this.velocity = velocity;
+    }
+
+    zeichneInsekt(ctx: CanvasRenderingContext2D): void {
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.ellipse(this.position.x, this.position.y, 10, 5, 0, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+
+    bewegeInsekt(): void {
+        const endX = canvas.width;
+        if (this.position.x + this.velocity.x < endX) {
+            this.position.x += this.velocity.x;
+        }
+    }
+}
+
 function animate() {
     himmel();
     wiese();
@@ -56,6 +83,11 @@ function animate() {
     for (const ente of enten) {
         ente.bewegeEnte();
         ente.zeichneEnte(crc2);
+    }
+
+    for (const insekt of insekten) {
+        insekt.bewegeInsekt();
+        insekt.zeichneInsekt(crc2);
     }
 
     requestAnimationFrame(animate);
@@ -69,6 +101,15 @@ for (let i = 0; i < 5; i++) {
     const startX = teichStartX - 30 - i * 60;
     const meineEnte = new Ente({ x: startX, y: teichStartY + 10 }, { x: 2, y: 0 });
     enten.push(meineEnte);
+}
+
+const insekten: Insekt[] = [];
+
+for (let i = 0; i < 10; i++) {
+    const startX = Math.random() * canvas.width;
+    const startY = Math.random() * canvas.height * 0.8;
+    const meinInsekt = new Insekt({ x: startX, y: startY }, { x: 1 + Math.random() * 2, y: 0 });
+    insekten.push(meinInsekt);
 }
 
 animate();
